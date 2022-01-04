@@ -12,4 +12,4 @@ def hash(request, hash):
     base64str = base64.b64encode(hash.encode('utf-8'))
     hasharray = [str(base64str.decode('utf-8'))]
     output = runner.api_return_hashes_as_json(hasharray, {"base64": True ,"popular_only": True})
-    return HttpResponse(output)
+    return HttpResponse(output, headers={"Content-Type": "application/json"})
