@@ -6,7 +6,7 @@ import base64
 def index(request):
     return HttpResponse("""
         <h1>welcome to Name-That-Hash api</h1>
-        <p>to use that api send http request to http://nth.rka.li/<hash></p>
+        <p>to use the api send http request to http://nth.rka.li/<hash></p>
         <p>example <a href="http://nth.rka.li/2d235ace000a3ad85f590e321c89bb99">http://nth.rka.li/2d235ace000a3ad85f590e321c89bb99</a></p>""")
 def hash(request, hash):
     base64str = base64.b64encode(hash.encode('utf-8'))
