@@ -6,7 +6,7 @@ import base64
 def index(request):
     return HttpResponse("""
         <h1>welcome to Name-That-Hash api</h1>
-        <p>to use the api send http GET request to http://nth.rka.li/&lt;hash&gt;</p>
+        <p>to use the api send http GET request to http://nth.rka.li/&lt;base64 encoded hash&gt;</p>
         <p>example <a href="http://nth.rka.li/2d235ace000a3ad85f590e321c89bb99">http://nth.rka.li/2d235ace000a3ad85f590e321c89bb99</a></p>
 
         <input type="text" name="hash" placeholder="hash" id="hash">
@@ -41,8 +41,8 @@ def view(request, hash):
     response= ""#<th>extended</th>    txt = [str(hash),]
     hashtxt = str(list(output.keys())[0])
     hashout= output.get(hashtxt)
+    response += "<h2>Hash: "+ hashtxt +"</h2>"
     if (len(list(hashout)) > 0):
-        response += "<h2>hash: "+ hashtxt +"</h2>"
         response += "<table><tr><th>Name</th><th>hashcat</th><th>john</th><th>description</th></tr>"
         for i in hashout:
             response += "<tr>"
@@ -55,7 +55,7 @@ def view(request, hash):
             a = "a"
         response += "</table>"
     else:
-        response += "<h1 style='color:red;''>can't find hashing algorithm</h1>"
+        response += "<h3 style='color:red;''>can't find hashing algorithm</h3>"
     head = "<h1>Name-That-Hash</h1>"
     allres = style+head+response
     return HttpResponse(allres)
